@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<style>
+  :root { --fg:#1d2433; --muted:#5b6475; --line:#d9dee7; --accent:#2f5d9e; --bg:#ffffff; }
+  body { font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--fg);
+         background: var(--bg); max-width: 1000px; margin: 2rem auto; padding: 0 16px; }
+  h1 { font-size: 1.6rem; margin-bottom: .2rem; }
+  h2 { font-size: 1.2rem; border-bottom: 1px solid var(--line); padding-bottom: .3rem;
+       margin-top: 2.2rem; color: var(--accent); }
+  .meta { color: var(--muted); }
+  .warning { border: 2px solid #c0392b; color: #c0392b; padding: .6rem 1rem; font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; margin: .5rem 0 1rem;
+          display: block; overflow-x: auto; }
+  th, td { border-bottom: 1px solid var(--line); padding: 4px 8px; text-align: left;
+           white-space: nowrap; }
+  th { background: #f3f5f9; }
+  .caption { font-weight: 600; margin-top: 1rem; }
+  figure { margin: 1rem 0; } figure img { max-width: 100%; }
+  figcaption, .more { color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>{{ title }}</h1>
+<p class="meta">Generated {{ generated }}</p>
+{% if synthetic %}<p class="warning">SYNTHETIC DATA WARNING: synthetic recordings contributed to these results. They are not study findings.</p>{% endif %}
+{% for section in sections %}
+<h2>{{ section.title }}</h2>
+{% for p in section.paragraphs %}<p>{{ p }}</p>{% endfor %}
+{% if section.bullets %}<ul>{% for b in section.bullets %}<li>{{ b }}</li>{% endfor %}</ul>{% endif %}
+{% for t in section.tables %}
+<p class="caption">{{ t.caption }} <span class="meta">(tables/{{ t.name }}.csv)</span></p>
+{{ html_table(t.frame) | safe }}
+{% endfor %}
+{% for f in section.figures %}
+<figure><img src="{{ f.path }}" alt="{{ f.caption }}"><figcaption>{{ f.caption }}</figcaption></figure>
+{% endfor %}
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,28 @@
+# {{ title }}
+
+Generated {{ generated }}
+
+{% if synthetic %}
+> **SYNTHETIC DATA WARNING.** Synthetic recordings contributed to these results. They are not study findings.
+{% endif %}
+{% for section in sections %}
+## {{ section.title }}
+
+{% for p in section.paragraphs %}{{ p }}
+
+{% endfor %}
+{% for b in section.bullets %}- {{ b }}
+{% endfor %}
+{% for t in section.tables %}
+**Table: {{ t.caption }}** (`tables/{{ t.name }}.csv`)
+
+{{ md_table(t.frame) }}
+
+{% endfor %}
+{% for f in section.figures %}
+![{{ f.caption }}]({{ f.path }})
+
+*Figure: {{ f.caption }}*
+
+{% endfor %}
+{% endfor %}

@@ -1,0 +1,16 @@
+# Inferential statistics. primary_feature_prefixes defines the pre-specified primary family.
+statistics:
+  alpha: 0.05
+  correction: fdr_bh
+  primary_feature_prefixes:
+  - region.log_abs_power.
+  - region.rel_power.
+  - asymmetry.
+  n_bootstrap: 2000
+  n_permutations: 2000
+  design: auto
+  min_participants_per_song: 2
+  mixed_effects_enabled: true
+  mixed_effects_max_features: 60
+  min_participants_for_inference: 3
+  random_seed: 42

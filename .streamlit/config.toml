@@ -1,0 +1,18 @@
+[server]
+headless = true
+# Participant data: serve on this machine only. Change deliberately for any shared deployment.
+address = "localhost"
+# Uploaded files are imported locally only; keep upload size aligned with dataset.max_file_size_mb.
+maxUploadSize = 500
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+primaryColor = "#2a6fdb"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f4f6f9"
+textColor = "#1d2733"
+font = "sans serif"

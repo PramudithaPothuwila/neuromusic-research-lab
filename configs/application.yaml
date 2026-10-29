@@ -1,0 +1,9 @@
+# Application paths and global settings.
+project_name: NeuroMusic Research Lab
+interim_dir: data/interim
+processed_dir: data/processed
+experiments_dir: experiments
+reports_dir: reports
+artifacts_dir: artifacts
+figure_dpi: 300
+random_seed: 42

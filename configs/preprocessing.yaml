@@ -1,0 +1,50 @@
+# Preprocessing pipeline. Changing any value creates a new versioned output set.
+# signal_units: 'unknown' disables physical-unit labels and microvolt thresholds.
+preprocessing:
+  sampling_rate: auto
+  signal_units: unknown
+  remove_dc_offset: true
+  bandpass:
+    enabled: true
+    low_hz: 1.0
+    high_hz: 40.0
+  notch:
+    enabled: false
+    frequency_hz: 50.0
+    harmonics: true
+  reference:
+    method: preserve_original
+    channels: []
+  windows:
+    duration_seconds: 4.0
+    overlap_seconds: 2.0
+  artifact_handling:
+    detection_enabled: true
+    automatic_rejection_enabled: false
+    detection_window_seconds: 1.0
+    flatline_relative_std: 0.01
+    step_robust_z: 15.0
+    amplitude_robust_z: 8.0
+    hf_band_hz:
+    - 45.0
+    - 100.0
+    hf_ratio_robust_z: 5.0
+    drift_cutoff_hz: 0.5
+    drift_power_fraction: 0.9
+    channel_variance_robust_z: 5.0
+    line_noise_hz: 50.0
+    line_noise_ratio_warning: 0.3
+    reject_window_if_flagged_channels_ge: 3
+  ica:
+    enabled: false
+    n_components: null
+    method: fastica
+    exclude_components: []
+    random_state: 42
+  baseline:
+    enabled: false
+    start_s: 0.0
+    end_s: 0.0
+  trim_start_seconds: 0.0
+  trim_end_seconds: 0.0
+  save_cleaned_data: true

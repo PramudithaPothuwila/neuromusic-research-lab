@@ -1,0 +1,42 @@
+# Dataset layout, expected channels and acquisition metadata.
+# Units, reference and device are UNVERIFIED; keep them null/unknown until confirmed.
+dataset:
+  raw_dir: data/raw/eeg
+  metadata_dir: data/metadata
+  channels:
+  - AF3
+  - F7
+  - F3
+  - FC5
+  - T7
+  - P7
+  - O1
+  - O2
+  - P8
+  - T8
+  - FC6
+  - F4
+  - F8
+  - AF4
+  channel_prefix: EEG.
+  allow_extra_channels: true
+  filename:
+    regex: ^(?P<source_id>[A-Za-z0-9]+)_(?P<source_label>[A-Za-z0-9]+)_(?P<participant_id>P\d+)_(?P<song_id>.+?)(?:_from_(?P<derived_from>SRC\d+))?(?:_(?P<trial_id>T\d+))?$
+    song_aliases: {}
+  acquisition:
+    expected_sampling_rate: 256.0
+    sampling_rate_tolerance_hz: 0.5
+    timestamp_jitter_tolerance: 0.1
+    unit_scale_to_microvolts: null
+    recording_device: null
+    acquisition_reference: null
+    montage: standard_1020
+    montage_positions_verified: false
+  validation:
+    min_duration_seconds: 10.0
+    flatline_min_seconds: 1.0
+    flatline_epsilon: 1.0e-09
+    extreme_robust_z: 20.0
+    extreme_fraction_warning: 0.01
+  max_zip_members: 2000
+  max_file_size_mb: 500.0

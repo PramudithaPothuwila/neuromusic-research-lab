@@ -1,0 +1,70 @@
+# Feature extraction. Bands are half-open [low, high) intervals and must not overlap.
+features:
+  frequency_bands:
+    theta:
+    - 4.0
+    - 8.0
+    alpha:
+    - 8.0
+    - 13.0
+    beta:
+    - 13.0
+    - 30.0
+  total_power_range:
+  - 1.0
+  - 40.0
+  psd:
+    method: welch
+    segment_seconds: 2.0
+    overlap_fraction: 0.5
+    window: hann
+    average: median
+    fmin: 1.0
+    fmax: 40.0
+  ratios:
+  - - alpha
+    - beta
+  - - theta
+    - beta
+  regions:
+    frontal_left:
+    - AF3
+    - F7
+    - F3
+    - FC5
+    frontal_right:
+    - AF4
+    - F8
+    - F4
+    - FC6
+    temporal_left:
+    - T7
+    temporal_right:
+    - T8
+    parietal:
+    - P7
+    - P8
+    occipital:
+    - O1
+    - O2
+  asymmetry_pairs:
+  - - F4
+    - F3
+  - - AF4
+    - AF3
+  - - F8
+    - F7
+  - - FC6
+    - FC5
+  asymmetry_bands:
+  - alpha
+  regional_features_enabled: true
+  include_temporal: true
+  include_hjorth: true
+  include_spectral_entropy: true
+  trial_aggregation: median
+  trial_variability:
+  - iqr
+  variability_families:
+  - region
+  min_valid_windows_per_trial: 5

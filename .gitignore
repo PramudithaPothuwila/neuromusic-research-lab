@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Participant data and derived artifacts (never commit raw EEG)
+data/raw/**
+!data/raw/eeg/.gitkeep
+data/interim/**
+data/processed/**
+data/metadata/registry.json
+data/metadata/signal_signatures.npz
+data/metadata/recording_manifest.csv
+data/metadata/emotion_ratings.csv
+experiments/**
+!experiments/.gitkeep
+artifacts/**
+!artifacts/.gitkeep
+reports/**
+!reports/.gitkeep
+
+# Environment
+.env
+.streamlit/secrets.toml
+
+# Stimulus audio (licensed for this project only; never commit)
+data/stimuli/**

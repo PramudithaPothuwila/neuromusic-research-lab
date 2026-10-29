@@ -1,0 +1,66 @@
+# Machine-learning, clustering and synchronization experiment defaults.
+experiments:
+  classification:
+    models:
+    - dummy
+    - logistic_regression
+    - svm
+    - random_forest
+    feature_prefixes:
+    - spectral.log_abs_power.
+    - spectral.rel_power.
+    observation_level: trial
+    target: song_id
+    tune_hyperparameters: true
+    inner_cv_splits: 3
+    tuning_scoring: balanced_accuracy
+    n_permutations: 0
+    permutation_importance_repeats: 10
+    min_participants: 3
+    random_seed: 42
+    n_jobs: 1
+  regression:
+    models:
+    - ridge
+    - svr
+    - random_forest
+    feature_prefixes:
+    - region.log_abs_power.
+    rating_type: null
+    tune_hyperparameters: true
+    inner_cv_splits: 3
+    random_seed: 42
+  clustering:
+    feature_prefixes:
+    - region.log_abs_power.
+    - region.rel_power.
+    n_components: 5
+    k_values:
+    - 2
+    - 3
+    - 4
+    - 5
+    n_stability_runs: 50
+    hierarchical_enabled: true
+    random_seed: 42
+  synchronization:
+    channels: null
+    sliding_window_seconds: 10.0
+    sliding_step_seconds: 5.0
+    n_surrogates: 200
+    min_shift_seconds: 5.0
+    random_seed: 42
+  song_similarity:
+    eeg_feature_prefixes:
+    - region.log_abs_power.
+    - region.rel_power.
+    - asymmetry.
+    song_segment_seconds: 120.0
+    acoustic_groups:
+    - loudness
+    - spectral
+    - rhythm
+    sample_rate: 22050
+    exclude_same_participant_pairs: true
+    n_permutations: 5000
+    random_seed: 42
